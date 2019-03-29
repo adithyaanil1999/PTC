@@ -1,0 +1,218 @@
+*{
+    margin:0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+    color: blue;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+}
+
+.main-container-landing{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.container__welcome-msg{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background: linear-gradient(to right bottom, rgba(242, 240, 245, 0.7), rgba(226, 239, 255, 0.7)),url(../img/bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 95%;
+  
+}
+.welcome-msg__Logo-container{
+    height: 300px;
+    width: 300px;
+    background: url('../img/Logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.welcome-msg__about-Logo-container{
+    height: 100px;
+    width: 500px;
+    text-align: center;
+    font-family: 'Alike', sans-serif;
+    font-size: 2rem;
+    color: darkblue;
+}
+
+.container__signin{
+    display: flex;
+    width: 50%;
+    height: 95%;
+    justify-content: center;
+    align-items: center;
+    background: rgb(238, 238, 238);
+}
+.signin__border-box
+{
+    overflow: hidden;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-shadow: -2px 5px 5px 5px grey;
+}
+
+.signin__box{
+    height: 80%;
+    width: 60%;
+    border-radius: 20px;
+    background: rgb(255, 255, 255);
+    box-shadow: -2px 5px 10px 1px grey;
+    -webkit-animation-duration: 12s; 
+    animation-duration: 12s;
+
+
+}
+.signin__box-header{
+    display: flex;
+    align-self: flex-start;
+    height: 20%;
+    align-items: flex-end;
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background: #003BFF;
+
+}
+.signin__box-header__text{
+    display: flex;
+    align-items: flex-end;
+    width: 80%;
+    height: 100px;
+    margin-left: 50px;
+    font-family: 'Metrophobic', sans-serif;
+    font-size: 3vw;
+    color: aliceblue;
+}
+.signin__box-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 70%;
+    width: 100%;
+}
+.signin__box-form-input-wrapper{
+    height: 40%;
+    width: 60%;
+}
+.signin__box-input-header{
+    font-family: 'Jaldi', sans-serif;
+    font-size: 2rem;
+}
+.signin__box-input-feild{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: grey solid 2px;
+    padding: 10px;
+    width: 95%;
+}
+.signin__box-input-feild:focus{
+    
+    outline: none;
+    animation: fadeInLeft2 0.7s;
+    border-bottom: purple solid 2px;
+}
+.signin__box-input-border{
+    background: purple;
+    width: 100%;
+    height: 2px;
+}
+.signin__box-form-register-wrapper{
+    height: 10%;
+    width: 100%;
+    text-align: center;
+    font-family: 'Alike', serif;
+}
+.signin__box-input-msg-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+    width: 100%;
+}
+.signin__box-input-msg{
+    font-family: 'Metrophobic', sans-serif;
+    color: red;
+    display: none;
+}
+.flex-break{
+    width: 100%;
+}
+.container__footer{
+    display: flex;
+    background: #303030;
+    height: 5%;
+    width: 100%;
+    justify-self: flex-end;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Metrophobic', sans-serif;    
+    color: white;
+}
+.register__border-box{
+    display: none;
+}
+@-webkit-keyframes fadeInLeft2 {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+  
+@keyframes fadeInLeft2 {
+    from {
+        opacity: 1;
+        width: 0%;
+    }
+
+    to {
+        opacity: 1;
+        width: 100%;
+    }
+}
+
+ @media only screen and (max-width: 1028px){
+    .container__welcome-msg{
+        display: none;
+    }
+    .container__signin{
+        width: 100%;
+    }
+    .signin__box{
+        width: 90%;
+    }
+    .signin__box-header__text
+    {
+        font-size: 10vw;
+    }
+	.container__footer{
+        font-size: 3vw;
+    }
+
+}

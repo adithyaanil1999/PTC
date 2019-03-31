@@ -125,7 +125,7 @@ input[type=number] {
 }
 .innerBox__box-input-header{
     font-family: 'Jaldi', sans-serif;
-    font-size: 2rem;
+    font-size: 1.5vw;
 }
 .innerBox__box-input-feild{
     border-top: none;

@@ -1,3 +1,11 @@
+<?php
+    $a=2;
+    session_start();
+    include('php/admin_script.php');
+    // echo $max;
+    // echo $array_json;
+    // print_r($array);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -102,134 +110,43 @@
                     <h2>Use the Navigation bar to browse actions</h2>
                 </div>
             </div>
-            <div class="content verify-account animated fadeIn">
+            <div class="content verify-account animated fadeIn" id="content-main">
                 <div class="content__spacers">
-                
                 </div>
-                <div class="content_profile_verify profile-1" style="display:flex">
-                    <div class="content_profile_verify-content-side">
-                        <div class="content_profile_verify-content-side-icon">
-                            <div class="content_profile_verify-content-side-icon-wrapper">
-                                <i class="fas fa-user-graduate"></i>
-                            </div>
-                            <div class="content_profile_verify-content-side-text-wrapper">
-                                <span id="student_id">17BCI0163</span>
-                            </div>
-                        </div>
-                        <div class="content_profile_verify-content-side-items">
-                            <h2>Name:</h2>
-                            <p id="student-name">Adithya Sreemandiram Anil</p>
-                        </div>
-                        
-                        <div class="content_profile_verify-content-side-items">
-                            <h2>Branch:</h2>
-                            <p id="student-name">CSE with Information Security</p>
-                        </div>
-                        <div class="content_profile_verify-content-side-items">
-                            <h2>CGPA:</h2>
-                            <p id="student-name">9.6</p>
-                        </div>
-                    </div>
-                    <div class="content_profile_verify-content-main">
-                        <div class="content_profile_verify-content-main-item">
-                            <div class="content_profile_verify-content-main-item-header">
-                                <h2>Career  Objecive</h2>
-                                <span id="stu-carrer-obj"> !</span>
-                            </div>
-                        </div>
-                        <div class="content_profile_verify-content-main-item">
-                            <div class="content_profile_verify-content-main-item-header">
-                                <h2>Professional Skills</h2>
-                                <span id="stu-pro-skills"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum ab voluptates unde aliquam exercitationem, illum expedita est laboriosam excepturi dolor numquam minima quisquam odio! Eum vero repellendus tempora. Id, iure!</span>
-                            </div>
-                        </div>
-                        <div class="content_profile_verify-content-main-item">
-                            <div class="content_profile_verify-content-main-item-header">
-                                <h2>Personal Skills</h2>
-                                <span id="stu-per-skills"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="content_profile_verify profile-2" style="display:none">
-                    <div class="content_profile_verify-content-side">
-                        <div class="content_profile_verify-content-side-icon">
-                            <div class="content_profile_verify-content-side-icon-wrapper">
-                                <i class="fas fa-briefcase"></i>
-                            </div>
-                            <div class="content_profile_verify-content-side-text-wrapper">
-                                <span id="student_id">17BCI0123</span>
-                            </div>
-                        </div>
-                        <div class="content_profile_verify-content-side-items">
-                            <h2>Name:</h2>
-                            <p id="rec-name">Adithya Sreemandiram Anil</p>
-                        </div>
-                        
-                        <div class="content_profile_verify-content-side-items">
-                            <h2>Company:</h2>
-                            <p id="rec_comp">Tata</p>
-                        </div>
-                    </div>
-                    <div class="content_profile_verify-content-main">
-                        <div class="content_profile_verify-content-main-item">
-                            <div class="content_profile_verify-content-main-item-header">
-                                <h2>Company desc</h2>
-                                <span id="comp_dec"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum ab voluptates unde aliquam exercitationem, illum expedita est laboriosam excepturi dolor numquam minima quisquam odio! Eum vero repellendus tempora. Id, iure!</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="content_profile_verify profile-3" style="display:none">
-                    <div class="content_profile_verify-content-side">
-                        <div class="content_profile_verify-content-side-icon">
-                            <div class="content_profile_verify-content-side-icon-wrapper">
-                                <i class="fas fa-user-graduate"></i>
-                            </div>
-                            <div class="content_profile_verify-content-side-text-wrapper">
-                                <span id="student_id">17BCI0123</span>
-                            </div>
-                        </div>
-                        <div class="content_profile_verify-content-side-items">
-                            <h2>Name:</h2>
-                            <p id="student-name">Adithya Sreemandiram Anil</p>
-                        </div>
-                        
-                        <div class="content_profile_verify-content-side-items">
-                            <h2>Branch:</h2>
-                            <p id="student-name">CSE with Information Security</p>
-                        </div>
-                        <div class="content_profile_verify-content-side-items">
-                            <h2>CGPA:</h2>
-                            <p id="student-name">9.6</p>
-                        </div>
-                    </div>
-                    <div class="content_profile_verify-content-main">
-                        <div class="content_profile_verify-content-main-item">
-                            <div class="content_profile_verify-content-main-item-header">
-                                <h2>Career  Objecive</h2>
-                                <span> !</span>
-                            </div>
-                        </div>
-                        <div class="content_profile_verify-content-main-item">
-                            <div class="content_profile_verify-content-main-item-header">
-                                <h2>Professional Skills</h2>
-                                <span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum ab voluptates unde aliquam exercitationem, illum expedita est laboriosam excepturi dolor numquam minima quisquam odio! Eum vero repellendus tempora. Id, iure!</span>
-                            </div>
-                        </div>
-                        <div class="content_profile_verify-content-main-item">
-                            <div class="content_profile_verify-content-main-item-header">
-                                <h2>Personal Skills</h2>
-                                <span> Lorem ipsum dolor sit amet consectetur adipisicing elit. </span>
-                            </div>
-                        </div>
-                    </div>
+
+                 <!-- dynamically display profiles to be verified -->
+                <?php create_verify_portal()?>
+                <script> var max=<?php echo $max?>;var arr=<?php echo $array_json;?> ;
+                </script>
+                <div class="no-items">
+                    No more accounts to be verified
                 </div>
                 <div class="content__spacers verify-footer">
-                    <div class="content__verify-profile-btns left-btn">
+                    <div class="content__verify-profile-btns">
+                        <i id="btn-left-verify" class="fas fa-chevron-left"></i>
                     </div>
-                    <div class="content__verify-footer-item-wrapper"></div>
-                    <div class="content__verify-profile-btns right-btn">
+                    <div class="content__verify-footer-item-wrapper">
+                        <form id='verify-user-form' method="POST" action="php/verify_user.php">                
+                            <button class="content__verify-buttons animated fadeIn" id="approve-btn">Approve</button>
+                            <div class="content__verify-buttons animated fadeIn" id="deny-btn">Deny</div>
+                            <div class="content__verify-deny-wrapper">
+                                <div class="content__verify-deny-nav-wrap">                       
+                                    <i id="back-btn-deny-desc" class="fas fa-arrow-left"></i>
+                                    <div id="sending-signal" class="animated fadeIn" ><i class="fas fa-sync"></i>Sending</div>
+                                    <button class="send-btn-wrap"><i id="send-btn" class="fas fa-check-circle"></i></button>
+                                </div>
+                                <div class="content__verify-deny-text-wrapper">
+                                    Provide the Resason for denied request:
+                                    <textarea rows="2" cols="18" class="content__verify-deny-box animated fadeIn" name="deny-desc" id="deny-desc"></textarea>
+                                </div>
+                            </div>
+                            <input id="verify_user_id" name="user-id" type="hidden">
+                            <input id="verify_user_status" name="user-status" type="hidden">
+                            <input id="verify_user_desc" name="user-deny-desc" type="hidden">   
+                        </form>
+                    </div>
+                    <div class="content__verify-profile-btns">
+                        <i id="btn-right-verify" class="fas fa-chevron-right"></i>
                     </div>
                 </div>
             </div>

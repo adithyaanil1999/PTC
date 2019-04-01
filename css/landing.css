@@ -120,7 +120,6 @@ input[type=number] {
     width: 100%;
 }
 .innerBox__box-form-input-wrapper{
-    max-height: 60%;
     width: 60%;
 }
 .innerBox__box-input-header{
@@ -177,7 +176,7 @@ input[type=number] {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 20%;
+    height: 20px;
     width: 100%;
 }
 .innerBox__box-input-msg{

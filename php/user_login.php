@@ -4,7 +4,7 @@
     if($_SERVER["REQUEST_METHOD"]==="POST"){
 
         $username= $_POST['username_log'];
-        $password = $_POST['password_log'];
+        $password = md5($_POST['password_log']);
         $sql = "SELECT username,usertype FROM login_table where username='$username' and userpass='$password';";
         $result=mysqli_query($link,$sql);
         if($result){

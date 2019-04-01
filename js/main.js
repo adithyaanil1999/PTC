@@ -1,3 +1,5 @@
+
+
 window.onload =()=>{
 
 // Plugin to automate the animate
@@ -157,12 +159,6 @@ var UIcontroller = (()=>{
             }
         });
 
-        recruiter_back_btn.addEventListener('click',()=>{
-            recruiter_box.animate('slideOutRight',()=>{
-                recruiter_cont.style.display='none';
-                reg_cont.style.display='flex';
-            });
-        });
         
         function back_handler_1(){
             student_detail_box.animate('slideOutRight',()=>{
@@ -208,16 +204,16 @@ var UIcontroller = (()=>{
 
                 });
                 student_back_btn.removeEventListener('click',back_handler_1);
-                student_back_btn.addEventListener('click',function back_handler_2(){
-                    student_details.classList.add('animated','fadeIn');
-                    student_details_2.classList.remove('animated','fadeIn');
-                    student_details.style.display='block';
-                    student_details_2.style.display='none';
-                    student_details_btn2.style.display='none';
-                    student_details_btn.style.display='flex';                
-                    student_back_btn.addEventListener('click',back_handler_1);
+                // student_back_btn.addEventListener('click',function back_handler_2(){
+                //     student_details.classList.add('animated','fadeIn');
+                //     student_details_2.classList.remove('animated','fadeIn');
+                //     student_details.style.display='block';
+                //     student_details_2.style.display='none';
+                //     student_details_btn2.style.display='none';
+                //     student_details_btn.style.display='flex';                
+                //     student_back_btn.addEventListener('click',back_handler_1);
 
-                })
+                // })
             } 
         });
         
@@ -260,6 +256,7 @@ var UIcontroller = (()=>{
                 });
             });
         }
+        
 
         return{
             public_req_login : function public_req_login(){
@@ -268,3 +265,114 @@ var UIcontroller = (()=>{
         };
     })();
 } 
+
+$('document').ready(function(){
+    $('#user_login_reg_form').on('submit',function(e){
+    // console.log(document.getElementById('reg-user-type').value);
+    e.preventDefault(); 
+    var FormData = $('#user_login_reg_form').serialize();
+    $.ajax({
+        
+        type : 'post',
+        url : 'php/reg_login.php',
+        data : FormData,
+        datatype : 'json',
+        encode : true,
+        beforeSend : function(){
+
+            $('#reg-msg').html('Sending');
+        },
+        success : function(response){
+
+            response = JSON.parse(response);
+            if(response.message== "ok"){
+                console.log('success');
+            }else{
+                console.log('reg-failed');
+            }
+
+        }
+
+    });
+
+});
+});
+
+$('document').ready(function(){
+    $('#about-student-details').on('submit',function(e){
+        var keyCode = e.keyCode || e.which;
+        if (keyCode === 13) { 
+        e.preventDefault();
+        return false;
+        }
+        e.preventDefault(); 
+        var FormData = $('#about-student-details').serialize();
+        $.ajax({
+            
+            type : 'post',
+            url : 'php/add_student.php',
+            data : FormData,
+            datatype : 'json',
+            encode : true,
+            beforeSend : function(){
+
+                $('#reg-msg').html('Sending');
+            },
+            success : function(response){
+
+                // response = JSON.parse(response);
+                // if(response.message== "ok"){
+                    console.log('success');
+                    $('#student-msg').html('Please wait for approval');
+                    $('#student-msg').css("display","flex");
+                    $('#student-back-btn').click(()=>{
+                        location.reload();
+                });
+                }
+
+            // }
+
+        });
+        return false;
+    });
+});
+
+$('document').ready(function(){
+    $('#rec-form').on('submit',function(e){
+        var keyCode = e.keyCode || e.which;
+        if (keyCode === 13) { 
+        e.preventDefault();
+        return false;
+        }
+        e.preventDefault(); 
+        var FormData = $('#rec-form').serialize();
+        $.ajax({
+            
+            type : 'post',
+            url : 'php/add_recruiter.php',
+            data : FormData,
+            datatype : 'json',
+            encode : true,
+            beforeSend : function(){
+
+                $('#reg-msg').html('Sending');
+            },
+            success : function(response){
+
+                // response = JSON.parse(response);
+                // if(response.message== "ok"){
+                    console.log('success');
+                    $('#rec-msg').html('Please wait for approval');
+                    $('#rec-msg').css("display","flex");
+                    $('#rec-back-btn').click(()=>{
+                        location.reload();
+                });
+                }
+
+            // }
+
+        });
+        return false;
+    });
+});
+

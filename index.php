@@ -9,8 +9,8 @@
     <link rel="stylesheet" type="text/css" href="css/animate.css">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.ico">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <script src="js/main.js"></script>
     <script src="js/jquery.js"></script>
+    <script src="js/main.js"></script>
     <title>PTC</title>
 </head>
 <body>
@@ -29,7 +29,7 @@
                             SIGN IN
                         </div>
                     </div>
-                    <form class="innerBox__box-form" method="POST" id="login-form" action="php/user_login.php">
+                    <form class="innerBox__box-form" method="POST" id="login-form" action="#" >
                         <div class="innerBox__box-form-input-wrapper">
                             <div class="innerBox__box-input-header">Username:</div>                           
                             <input class="innerBox__box-input-feild" name="username_log" type="text" id='username_log'>
@@ -53,7 +53,7 @@
                             Register
                         </div>
                     </div>
-                    <form class="innerBox__box-form" method="POST" action="#" onsubmit="return false">
+                    <form class="innerBox__box-form" method="POST" id="user_login_reg_form" action="#">
                         <div class="innerBox__box-form-input-wrapper">
                             <input name="type-user" type="hidden" id='reg-user-type'>
                             <div class="innerBox__box-input-header">Username:</div>           
@@ -81,9 +81,8 @@
                             Details:
                         </div>
                     </div>
-                    <form class="innerBox__box-form" method="POST" action="#" onsubmit="return false">
+                    <form class="innerBox__box-form" method="POST" id="about-student-details" action="#">
                         <div class="innerBox__box-form-input-wrapper" id="student-details">
-                            <input name="type-user" type="hidden" value='S'>
                             <div class="innerBox__box-input-header">Name:</div> 
                             <input class="innerBox__box-input-feild" name="name" type="text" id="student-name">
                             <div class="innerBox__box-input-header">Branch:</div>
@@ -93,11 +92,11 @@
                         </div>
                         <div class="innerBox__box-form-input-wrapper" id="student-details-2">
                             <div class="innerBox__box-input-header">Career objective:</div>
-                            <input class="innerBox__box-input-feild" name="obj" type="text" id="student-obj">
+                            <textarea rows="2" cols="35" class="innerBox__box-input-feild" name="student-obj" id="student-obj"></textarea>
                             <div class="innerBox__box-input-header">Profesional Skills:</div> 
-                            <input class="innerBox__box-input-feild" name="pro_skills" type="text" id="student-pro-skills">
+                            <textarea rows="2" cols="18" class="innerBox__box-input-feild" name="student-pro-skills" id="student-pro-skills"></textarea>
                             <div class="innerBox__box-input-header">Personal Skills:</div>
-                            <input class="innerBox__box-input-feild" name="branch" type="text" id="student-per-skills">
+                            <textarea rows="2" cols="18" class="innerBox__box-input-feild" name="student-per-skills" id="student-per-skills"></textarea>
                         </div>
                         <div class="innerBox__box-input-button" id="student-details-cont-btn"> Continue</div>
                         <button class="innerBox__box-input-button" id="student-details-cont-btn2"> Register</button>
@@ -117,15 +116,15 @@
                             Details:
                         </div>
                     </div>
-                    <form class="innerBox__box-form" method="POST" action="#" onsubmit="return false">
+                    <form class="innerBox__box-form" id="rec-form" method="POST" action="php/add_recruiter.php">
                         <div class="innerBox__box-form-input-wrapper" id="student-details">
-                            <input name="type-user" type="hidden" value='R'>
+                            <!-- <input name="type-user" type="hidden" value='R'> -->
                             <div class="innerBox__box-input-header">Name:</div> 
                             <input class="innerBox__box-input-feild" name="name" type="text" id="rec-name">
                             <div class="innerBox__box-input-header">Company Name:</div>
                             <input class="innerBox__box-input-feild" name="comp_name" type="text" id="rec-comp-name">
                         </div>
-                        <div class="innerBox__box-input-button" id="recruiter-details-cont-btn"> Register</div>
+                        <button class="innerBox__box-input-button" id="recruiter-details-cont-btn"> Register</button>
                         <div class="innerBox__box-input-msg-wrapper"> 
                             <span class="innerBox__box-input-msg animated shake fast" id='rec-msg'></span>
                         </div>

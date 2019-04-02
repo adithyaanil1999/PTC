@@ -8,7 +8,7 @@
         $comp_name = $_POST['comp_name'];
 
         $sql = "INSERT INTO user_recruiter(rec_id,rec_name,rec_comp,rec_approved_status) 
-        VALUES ('$reec_id','$name','$comp_name','PENDING');";
+        VALUES ('$rec_id','$name','$comp_name','PENDING');";
         echo $sql;
         $result=mysqli_query($link,$sql);
         if($result){

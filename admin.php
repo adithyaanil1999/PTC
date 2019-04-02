@@ -1,10 +1,6 @@
 <?php
-    $a=2;
     session_start();
     include('php/admin_script.php');
-    // echo $max;
-    // echo $array_json;
-    // print_r($array);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +46,7 @@
                         <i class="fas fa-building fa-3.5x navbar__hamburger-icons"></i>
                     </div>
                 </div>
-                <div class="navarbar__hamburger-items">
+                <!-- <div class="navarbar__hamburger-items">
                     <div class="navarbar__hamburger-items__icon">
                         <i class="fas fa-chart-area fa-3.5x navbar__hamburger-icons"></i>
                     </div>
@@ -59,7 +55,7 @@
                     <div class="navarbar__hamburger-items__icon">
                         <i class="far fa-user fa-3.5x navbar__hamburger-icons"></i>
                     </div>
-                </div>
+                </div> -->
                 <div class="navarbar__hamburger-items">
                     <div class="navarbar__hamburger-items__icon">
                         <i class="fas fa-sign-out-alt fa-3.5x navbar__hamburger-icons"></i>
@@ -85,19 +81,19 @@
                         <div class="navarbar__hamburger-items__text-wrapper" id="reg_comp_btn">Register Company</div>
                     </div>
                 </div>
-                <div class="navarbar__hamburger-items">
+                <!-- <div class="navarbar__hamburger-items">
                     <div class="navarbar__hamburger-items__text">
                         <div class="navarbar__hamburger-items__text-wrapper" id="view_report_btn">View Report</div>
                     </div>
-                </div>
-                <div class="navarbar__hamburger-items">
+                </div> -->
+                <!-- <div class="navarbar__hamburger-items">
                     <div class="navarbar__hamburger-items__text">
                         <div class="navarbar__hamburger-items__text-wrapper" id="manage_btn">Manage Accounts</div>
                     </div>
-                </div>
+                </div> -->
                 <div class="navarbar__hamburger-items">
                     <div class="navarbar__hamburger-items__text">
-                        <div class="navarbar__hamburger-items__text-wrapper" id="manage_btn">Logout</div>
+                        <div class="navarbar__hamburger-items__text-wrapper" id="logout_btn">Logout</div>
                     </div>
                 </div>
             </div>
@@ -126,7 +122,7 @@
                         <i id="btn-left-verify" class="fas fa-chevron-left"></i>
                     </div>
                     <div class="content__verify-footer-item-wrapper">
-                        <form id='verify-user-form' method="POST" action="php/verify_user.php">                
+                        <form id='verify-user-form' method="POST" action="#">                
                             <button class="content__verify-buttons animated fadeIn" id="approve-btn">Approve</button>
                             <div class="content__verify-buttons animated fadeIn" id="deny-btn">Deny</div>
                             <div class="content__verify-deny-wrapper">
@@ -151,7 +147,23 @@
                 </div>
             </div>
             <div class="content reg_company animated fadeIn">
-                Reg company
+                <div class="content_reg_company_container">
+                    <div class="reg_company_banner">
+                        Enter the Details of the company
+                    </div>
+                    <div class="reg_company_wrapper">
+                        <form class="company_details_wrap" id="comp-form" method="POST" action="#"> 
+                            <h1>Company name</h1>
+                            <input name='comp_name' class="company_details_wrap_inputs "type="text" id="comp_name_reg">
+                            <h1>Company description</h1>
+                            <textarea id="comp_desc_reg" class="company_details_wrap_inputs" row="15" col="100">
+                            </textarea>
+                            <input name="comp_desc" id="comp_desc_reg_value" type="hidden"> 
+                            <button class="comp_desc_button">Register</button>
+                        </form>
+                    </div>
+                    <div class="content_comp_msg" id='comp-msg'></div>
+                </div>
             </div>
             <div class="content report animated fadeIn">
                 Report

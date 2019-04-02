@@ -61,6 +61,9 @@ var UIcontroller = (()=>{
             });
         });
 
+        $('#recruiter_back_btn').click(()=>{
+            location.href="index.php";
+        });
         reg_back_btn.addEventListener('click',()=>{        
             reg_box.animate('slideOutRight',()=>{
                 reg_cont.style.display='none';

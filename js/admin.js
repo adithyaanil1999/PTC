@@ -8,22 +8,18 @@ window.onload= ()=>{
             console.log('click');
             $('#nav-icon3').toggleClass('open');
             if(Hamburger_flag===false){
-            // $('.navbar-container-common').css("width","15%");
             $('.content-container').css("width","85%");
             $('.navbar-container-common__expanded').css("display","flex");
             setTimeout(function(){
                 $('.navbar-container-common__expanded').css("width","10%");
             }, 100);
-            // $('.navarbar__hamburger-items__text').css("display","flex");
                 Hamburger_flag=true;
             }else{
-                // $('.navbar-container-common').css("width","5%");
                 $('.content-container').css("width","95%");
                 $('.navbar-container-common__expanded').css("width","0%");
                 setTimeout(function(){
                     $('.navbar-container-common__expanded').css("display","none");
                 }, 100);
-                // $('.navarbar__hamburger-items__text').css("display","none");
                 Hamburger_flag=false;
             }
 
@@ -58,6 +54,20 @@ window.onload= ()=>{
             $('.manage').css("display","flex");
             click_ham_menu();
 
+        });
+        $('#logout_btn').click(()=>{
+            console.log('logout');
+            $.ajax({
+                url : 'php/logout.php',
+                beforeSend : function(){
+                    console.log('sending');
+                    // $('#reg-msg').html('Sending');
+                },
+                success : function(response){
+                    console.log('succ');
+                    location.href="index.php";
+                }
+            });
         });
 
         $('.profile-1').css("display","flex");
@@ -144,7 +154,7 @@ window.onload= ()=>{
                 $.ajax({
                     
                     type : 'post',
-                    url : '../php/verify_user.php',
+                    url : 'php/verify_user.php',
                     data : FormData,
                     datatype : 'json',
                     encode : true,
@@ -160,9 +170,9 @@ window.onload= ()=>{
 
                         if(response.message== "ok"){
                             console.log('success');
-                            location.reload();
+                            // location.reload();
                         }else{
-                            console.log('login-failed');
+                            console.log(response);
 
                         }
 

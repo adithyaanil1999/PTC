@@ -15,7 +15,7 @@
                 WHERE student_id='$user_id';";
             $result=mysqli_query($link,$sql);
             if($result){
-                $message="ok";
+                $message=$sql;
             }
             else
             {

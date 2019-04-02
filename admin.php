@@ -156,9 +156,8 @@
                             <h1>Company name</h1>
                             <input name='comp_name' class="company_details_wrap_inputs "type="text" id="comp_name_reg">
                             <h1>Company description</h1>
-                            <textarea id="comp_desc_reg" class="company_details_wrap_inputs" row="15" col="100">
+                            <textarea id="comp_desc_reg" name="comp_desc_reg" class="company_details_wrap_inputs" row="15" col="100">
                             </textarea>
-                            <input name="comp_desc" id="comp_desc_reg_value" type="hidden"> 
                             <button class="comp_desc_button">Register</button>
                         </form>
                     </div>

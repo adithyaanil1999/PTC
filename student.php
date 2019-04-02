@@ -1,7 +1,16 @@
 <?php
     session_start();
-   // echo 123;
-//    echo $_SESSION['username'];
+    include('php/config.php');
+
+    include('php/create_table_apply.php');
+    $username=$_SESSION['username'];
+    $sql="SELECT student_cgpa from user_student where student_id='$username';";
+    $result=mysqli_query($link,$sql);
+    $row=mysqli_fetch_assoc($result);
+
+    $cgpa=$row['student_cgpa'];
+    $sql="SELECT v.*,r.rec_comp FROM vacancy_listing v JOIN user_recruiter r ON v.vacancy_recruiter_id=r.rec_id WHERE vacancy_cgpa<=$cgpa;";
+    $result=mysqli_query($link,$sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,11 +62,11 @@
                         <i class="fas fa-briefcase fa-3.5x navbar__hamburger-icons"></i>
                     </div>
                 </div>
-                <div class="navarbar__hamburger-items">
+                <!-- <div class="navarbar__hamburger-items">
                     <div class="navarbar__hamburger-items__icon">
                         <i class="fas fa-school fa-3.5x navbar__hamburger-icons"></i>
                     </div>
-                </div>
+                </div> -->
                 <div class="navarbar__hamburger-items">
                     <div class="navarbar__hamburger-items__icon">
                         <i class="far fa-calendar fa-3.5x navbar__hamburger-icons"></i>
@@ -83,16 +92,16 @@
                         <div class="navarbar__hamburger-items__text-wrapper" id="job_vac_btn">Job Vacancies</div>
                     </div>
                 </div>
-                <div class="navarbar__hamburger-items">
+                <!-- <div class="navarbar__hamburger-items">
                     <div class="navarbar__hamburger-items__text">
                         <div class="navarbar__hamburger-items__text-wrapper" id="train_btn">Training</div>
                     </div>
-                </div>
+                </div>-->
                 <div class="navarbar__hamburger-items">
                     <div class="navarbar__hamburger-items__text">
                         <div class="navarbar__hamburger-items__text-wrapper" id="sche_btn">Schedule</div>
                     </div>
-                </div>
+                </div> 
                 <div class="navarbar__hamburger-items">
                     <div class="navarbar__hamburger-items__text">
                         <div class="navarbar__hamburger-items__text-wrapper" id="logout_btn">Logout</div>
@@ -109,16 +118,45 @@
                 </div>
             </div>
             <div class="content vacancy animated fadeIn">
-                <div class="content-home-page">
-                </div>
+            <span class="table-msg animated shake">TTEST TEST TEST</span>     
+                <div class="content-vacancy-page">
+                    <script> var x=1; </script>
+                    <?php create_header(); ?>
+                    <?php  $x=1;
+                    while($row=mysqli_fetch_assoc($result))
+                    {   
+                        ?>
+                            <div class="table-row">
+                                    <div class="text dec"><?php echo $row['vacancy_id'] ?></div>
+                                    <div class="text dec"><?php echo $row['vacancy_recruiter_id'] ?></div>
+                                    <div class="text dec"><?php echo $row['vacancy_comp'] ?></div>
+                                    <div class="text inc"><?php echo $row['vacancy_desc'] ?></div>
+                                    <div class="text inc"><?php echo $row['vacancy_skills_req'] ?></div>
+                                    <div class="text dec"><?php echo $row['vacancy_cgpa'] ?></div>
+                                    <div class="text inc"><?php echo $row['vacancy_location'] ?></div>
+                                    <div class="text dec">
+                                        <form class="form-wrapper" method="POST" action="#" id="vacany-form-<?php echo $row['vacancy_id'] ?>">
+                                            <input name="vacany_applied" type="hidden" class="hidden" value="<?php echo $row['vacancy_id'] ?>">
+                                            <button id="submit-btn" class="apply-btn">Apply</button>
+                                        </form>
+                                    </div>
+                            </div>
+                        <?php
+                            $x++;    
+                    }
+                    ?>
+                   
+                    </div>
+                                  
             </div>
+    
             <div class="content training animated fadeIn">
-                <div class="content-home-page">
-                </div>
+                <!-- <div class="content-home-page">
+                </div> -->
             </div>
             <div class="content schedule animated fadeIn">
-                <div class="content-home-page">
-                </div>
+                <!-- <div class="content-home-page">
+                </div> -->
             </div>
         </div>
     </div>

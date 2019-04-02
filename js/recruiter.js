@@ -1,10 +1,10 @@
 let Hamburger_flag=false;
-        
+
+
 //event Listeners
 
 window.onload=()=>{
     function click_ham_menu(){
-    console.log('click');
     $('#nav-icon3').toggleClass('open');
     if(Hamburger_flag===false){
     $('.content-container').css("width","85%");
@@ -24,12 +24,6 @@ window.onload=()=>{
 
     }
     $('.navbar-container-common').click(click_ham_menu);
-
-    $('#home_btn').click(()=>{
-        $('.content').css("display","none");
-        $('.home_page').css("display","flex");
-        click_ham_menu();
-    });
     $('.content').css("display","none");
     $('.home_page').css("display","flex");
     $('#home_btn').click(()=>{
@@ -38,15 +32,16 @@ window.onload=()=>{
         click_ham_menu();
 
     });
-    $('#job_vac_btn').click(()=>{
+    $('#create_btn').click(()=>{
         $('.content').css("display","none");
-        $('.vacancy').css("display","flex");
+        $('.listing').css("display","flex");
         click_ham_menu();
+
         
     });
-    $('#train_btn').click(()=>{
+    $('#serach_btn').click(()=>{
         $('.content').css("display","none");
-        $('.training ').css("display","flex");
+        $('.search ').css("display","flex");
         click_ham_menu();
 
 
@@ -74,13 +69,12 @@ window.onload=()=>{
     });
 
 }
-
 (function(){
 
     // $('.navbar-container-common').click(click_ham_menu);
     $('document').ready(function(){
         $.ajax({
-            url : 'php/check_approve_student.php',
+            url : 'php/check_approve_recruiter.php',
             datatype : 'json',
             encode : true,
             beforeSend : function(){
@@ -128,43 +122,96 @@ window.onload=()=>{
         return false;
     });
     $('document').ready(function(){
-        $('.apply-btn').on('click',function(e){
-            console.log('submiting');
-            var id_form=$(this).prev('.hidden').val();
-            e.preventDefault(); 
-            var FormData = $('#vacany-form-'+id_form).serialize();
-            $.ajax({
-                
-                type : 'post',
-                url : 'php/add_vacancy.php',
-                data : FormData,
-                datatype : 'json',
-                encode : true,
-                beforeSend : function(){
-                    console.log('sending');
-                    $('.table-msg').html('Sending');
-                    $('.table-msg').css("display","flex");
+        $.ajax({
+            url : 'php/check_listing.php',
+            datatype : 'json',
+            encode : true,
+            beforeSend : function(){
+                console.log('sending');
+                // $('#reg-msg').html('Sending');
+            },
+            success : function(response){
 
-                },
-                success : function(response){
-                        response = JSON.parse(response);
+                response = JSON.parse(response);
+                // console.log(response);
+                // if(response.message== "ok"){
+                if (response.message=="YES"){
+                    $('#create-listing-form').css("display","none");
+                    $('#delete-listing-form').css("display","flex");
+                    $('#desc-display').html(response.desc);
+                    $('#CGPA-display').html(response.cgpa);
+                    $('#skills-display').html(response.skill);
+                    $('#location-display').html(response.loc);
 
-                        console.log(response);
-                        if(response==="ok")
-                        {
-                            $('.table-msg').html('Already Applied');
-                            $('.table-msg').css("display","flex");
-                            console.log('No can do');
-                        }
-                    }
-    
-                // }
-    
-            });
-            return false;
+
+                }
+                else if(response=="NO"){
+                    // console.log('ad2');
+                    $('#create-listing-form').css("display","flex");
+                    $('#delete-listing-form').css("display","none");
+                }
+            }
+
+            // }
+
         });
+        return false;
     });
 
 }
 )();
+
+$('document').ready(function(){
+    $('#create-listing-form').on('submit',function(e){
+        e.preventDefault(); 
+        var FormData = $('#create-listing-form').serialize();
+        $.ajax({
+            type : 'post',
+            url : 'php/create_listing.php',
+            data : FormData,
+            datatype : 'json',
+            encode : true,
+            beforeSend : function(){
+                console.log('sending_oit');
+                $('#list-msg').html('Sending');
+            },
+            success : function(response){
+                response = JSON.parse(response);
+                console.log(response);
+                $('#list-msg').html('Listed');
+                $('#list-msg').css("display","flex");
+                location.reload();
+            }
+
+        });
+        return false;
+    });
+});
+
+$('document').ready(function(){
+    $('#delete-listing-form').on('submit',function(e){
+        e.preventDefault(); 
+        var FormData = $('#delete-listing-form').serialize();
+        $.ajax({
+            type : 'post',
+            url : 'php/delete_listing.php',
+            data : FormData,
+            datatype : 'json',
+            encode : true,
+            beforeSend : function(){
+                console.log('sending_it');
+                $('#delete-msg').html('Sending');
+            },
+            success : function(response){
+                response = JSON.parse(response);
+                console.log(response);
+                $('#delete-msg').html('Listed');
+                $('#delete-msg').css("display","flex");
+                location.reload();
+            }
+
+        });
+        return false;
+    });
+});
 

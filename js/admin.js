@@ -191,3 +191,32 @@ window.onload= ()=>{
     })();
 
 }
+
+$('document').ready(function(){
+    $('.comp_desc_button').click(()=>{
+        $('#comp-form').on('submit',function(e){
+            e.preventDefault(); 
+            var FormData = $('#comp-form').serialize();
+            $.ajax({
+                
+                type : 'post',
+                url : 'php/add_comp.php',
+                data : FormData,
+                datatype : 'json',
+                encode : true,
+                beforeSend : function(){
+                    $('#comp-msg').css("display","flex");
+                    $('#comp-msg').html('Sending');
+                },
+                success : function(response){
+                    console.log(response);
+                    $('#comp-msg').html('Success');
+                    $('#comp-msg').css("display","flex");
+                }
+            });
+            return false;
+        });
+
+    });
+   
+});

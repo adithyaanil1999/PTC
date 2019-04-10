@@ -9,6 +9,7 @@
 
         $sql="SELECT * from approval_students WHERE app_student='$student_id' AND app_vac='$vacancy';";
         $result=mysqli_query($link,$sql);
+        $row=mysqli_fetch_assoc($result);
         // echo json_encode($sql);
         
        if(mysqli_num_rows($result)==0){
@@ -16,7 +17,7 @@
             // echo $sql;
            $result=mysqli_query($link,$sql);
             if($result){
-                $message="ok";
+                $message="applied";
                 echo json_encode($message);
             }else{
                 $message=$sql;
@@ -25,11 +26,10 @@
        }
         else
         {
-            $message="ok";
+            $message=$row['app_status'];
             echo json_encode($message);
 
         }
     }
-    // echo json_encode($message);
 
 ?>

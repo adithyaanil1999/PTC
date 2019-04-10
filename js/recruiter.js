@@ -68,6 +68,13 @@ window.onload=()=>{
         });
     });
 
+    $('#submit-btn-send-offer').click(()=>{
+        $('#submit-btn-send-offer').css("display","none");
+        $('#offer-amt').css("display","flex");
+        $('#submit-btn-send-offer-2').css("display","flex");
+
+    });
+
 }
 (function(){
 
@@ -121,6 +128,7 @@ window.onload=()=>{
         });
         return false;
     });
+    
     $('document').ready(function(){
         $.ajax({
             url : 'php/check_listing.php',
@@ -136,12 +144,15 @@ window.onload=()=>{
                 // console.log(response);
                 // if(response.message== "ok"){
                 if (response.message=="YES"){
+                    console.log(response.date);
                     $('#create-listing-form').css("display","none");
                     $('#delete-listing-form').css("display","flex");
                     $('#desc-display').html(response.desc);
                     $('#CGPA-display').html(response.cgpa);
                     $('#skills-display').html(response.skill);
                     $('#location-display').html(response.loc);
+                    $('#date-display').html(response.date);
+
 
 
                 }
@@ -158,6 +169,118 @@ window.onload=()=>{
         return false;
     });
 
+    $('document').ready(function(){
+        $('.green').on('click',function(e){
+            console.log('submiting');
+            var id_form=$(this).prev('.hidden').val();
+            console.log(id_form);
+            e.preventDefault(); 
+            var FormData = $('#approve-form-'+id_form).serialize();
+            $.ajax({
+                
+                type : 'post',
+                url : 'php/approve_student.php',
+                data : FormData,
+                datatype : 'json',
+                encode : true,
+                beforeSend : function(){
+                    console.log('sending');
+                },
+                success : function(response){
+                        response = JSON.parse(response);
+                        console.log(response);
+                        if(response==="ok")
+                        {
+                            location.reload();
+                            console.log('ok');
+
+                        }
+                        
+                    }
+    
+                // }
+    
+            });
+            return false;
+        });
+    });
+    $('document').ready(function(){
+        $('.red').on('click',function(e){
+            console.log('submiting');
+            var id_form=$(this).prev('.hidden').val();
+            console.log(id_form);
+            e.preventDefault(); 
+            var FormData = $('#deny-form-'+id_form).serialize();
+            $.ajax({
+                
+                type : 'post',
+                url : 'php/deny_student.php',
+                data : FormData,
+                datatype : 'json',
+                encode : true,
+                beforeSend : function(){
+                    console.log('sending');
+                },
+                success : function(response){
+                        response = JSON.parse(response);
+                        console.log(response);
+                        if(response==="ok")
+                        {
+                            location.reload();
+                            console.log('ok');
+
+                        }
+                        
+                    }
+    
+                // }
+    
+            });
+            return false;
+        });
+    });
+
+    $('document').ready(function(){
+        $('.send-btn').on('click',function(e){
+            console.log('submiting');
+            var id_form=$(this).prev('.hidden2').val();
+            console.log(id_form);
+            e.preventDefault(); 
+            var FormData = $('#offer-form-'+id_form).serialize();
+            $.ajax({
+                
+                type : 'post',
+                url : 'php/send_offer.php',
+                data : FormData,
+                datatype : 'json',
+                encode : true,
+                beforeSend : function(){
+                    console.log('sending');
+                },
+                success : function(response){
+                        response = JSON.parse(response);
+                        console.log(response);
+                        if(response==="ok")
+                        {
+                            location.reload();
+                            console.log('ok');
+
+                        }
+                        else if(response=="SENT")
+                        {
+                            $('#send-msg').css("display","flex");
+                            $('#send-msg').html('Already Sent');
+                            
+                        }
+                        
+                    }
+    
+                // }
+    
+            });
+            return false;
+        });
+    });
 }
 )();
 
@@ -214,4 +337,6 @@ $('document').ready(function(){
         return false;
     });
 });
+
+
 

@@ -7,6 +7,7 @@
         $skills=$_POST['skills_req'];
         $loc=$_POST['location'];
         $desc = rtrim($_POST['listing_desc']);
+        $date = $_POST['date'];
 
         $sql1="SELECT rec_comp from user_recruiter WHERE rec_id='$user_id';";
         $result=mysqli_query($link,$sql1);
@@ -14,8 +15,8 @@
         $comp=$row['rec_comp'];
         
 
-        $sql = "INSERT INTO vacancy_listing(vacancy_recruiter_id,vacancy_desc,vacancy_comp,vacancy_cgpa,vacancy_skills_req,vacancy_location) 
-        VALUES ('$user_id','$desc','$comp',$cgpa,'$skills','$loc');";
+        $sql = "INSERT INTO vacancy_listing(vacancy_recruiter_id,vacancy_desc,vacancy_comp,vacancy_cgpa,vacancy_skills_req,vacancy_location,vacancy_date) 
+        VALUES ('$user_id','$desc','$comp',$cgpa,'$skills','$loc','$date');";
         // echo $sql;
         $result=mysqli_query($link,$sql);
         if($result){

@@ -1,6 +1,20 @@
 <?php
     session_start();
+    include('php/config.php');
+
     include('php/create_table_approval.php');
+    $username=$_SESSION['username'];
+    $sql="SELECT vacancy_id from vacancy_listing WHERE vacancy_recruiter_id='$username';";
+    $result=mysqli_query($link,$sql);
+    $row=mysqli_fetch_assoc($result);
+    // echo $sql;
+    $vacid=$row['vacancy_id'];
+    $sql="SELECT u.* FROM user_student u JOIN approval_students on app_student=student_id WHERE app_vac=$vacid AND app_status='PENDING';";
+    $result=mysqli_query($link,$sql);
+
+    $sql2="SELECT v.*,a.app_student FROM vacancy_listing v JOIN approval_students a on app_vac=vacancy_id where vacancy_recruiter_id='$username';";
+    $result2=mysqli_query($link,$sql2);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -119,6 +133,8 @@
                             <textarea name="skills_req" row="5" coloum="100" class="content-listing-feilds"></textarea>
                             <h1>Location</h1>
                             <input name="location" type="text">
+                            <h1>Date</h1>
+                            <input name="date" type="date">
                             <span id="list-msg"></span>
                             <button class="form-submit-button">Add lisiting</button>
                         </div>
@@ -133,6 +149,8 @@
                             <span id="skills-display"></span>
                             <h1>Location</h1>
                             <span id="location-display"></span>
+                            <h1>Date</h1>
+                            <span id="date-display"></span>
                             <span id="delete-msg"></span>
                         </div>
                         <div class="button-wrapper"><button class="form-submit-button">Remove lisiting?</button></div>
@@ -142,10 +160,63 @@
             <div class="content search animated fadeIn">
                 <div class="content-approve-page">
                     <?php create_header() ?>
+                    <?php  
+                    while($row=mysqli_fetch_assoc($result))
+                    {   
+                        ?>
+                            <div class="table-row">
+                                    <div class="text dec"><?php echo $row['student_id'] ?></div>
+                                    <div class="text dec"><?php echo $row['student_name'] ?></div>
+                                    <div class="text dec"><?php echo $row['student_cgpa'] ?></div>
+                                    <div class="text inc"><?php echo $row['student_obj'] ?></div>
+                                    <div class="text inc"><?php echo $row['student_prof_skills'] ?></div>
+                                    <div class="text dec"><?php echo $row['student_pers_skills'] ?></div>
+                                    <div class="text dec">
+                                        <form class="form-wrapper" method="POST" action="#" id="approve-form-<?php echo $row['student_id'] ?>">
+                                            <input name="student_applied" type="hidden" class="hidden" value="<?php echo $row['student_id'] ?>">
+                                            <button id="submit-btn-aprove" class="apply-btn green">Aprove</button>
+                                        </form>
+                                    </div>
+                                    <div class="text dec">
+                                        <form class="form-wrapper" method="POST" action="#" id="deny-form-<?php echo $row['student_id'] ?>">
+                                            <input name="student_applied" type="hidden" class="hidden" value="<?php echo $row['student_id'] ?>">
+                                            <button id="submit-btn-deny" class="apply-btn red">Deny</button>
+                                        </form>
+                                    </div>
+                            </div>
+                        <?php
+                    }
+                    ?>
+                    
                 </div>
+            </div>
             <div class="content schedule animated fadeIn">
-                <div class="content-home-page">
-                    ad
+            <span class="send-disp animated shake" id='send-msg'></span>
+                <div class="content-approve-page">
+                <?php create_header_2(); ?>
+                        <?php  
+                    while($row=mysqli_fetch_assoc($result2))
+                    {   
+                        ?>
+                            <div class="table-row">
+                                    <div class="text dec"><?php echo $row['vacancy_id'] ?></div>
+                                    <div class="text dec"><?php echo $row['app_student'] ?></div>
+                                    <div class="text dec"><?php echo $row['vacancy_comp'] ?></div>
+                                    <div class="text inc"><?php echo $row['vacancy_location'] ?></div>
+                                    <div class="text inc"><?php echo $row['vacancy_date'] ?></div>
+                                    <div class="text dec">
+                                        <form class="form-wrapper send-form" method="POST" action="#" id="offer-form-<?php echo $row['vacancy_id'] ?>">
+                                            <input name="student_applied" type="hidden" value="<?php echo $row['app_student'] ?>">
+                                            <input name="offer-amt" type="number" id="offer-amt">
+                                            <div id="submit-btn-send-offer" >Send Offer</div>
+                                            <input name="vacancy_applied" type="hidden" class="hidden2" value="<?php echo $row['vacancy_id'] ?>">
+                                            <button id="submit-btn-send-offer-2" class="send-btn">Salary</button>
+                                        </form>
+                                    </div>
+                            </div>
+                        <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>

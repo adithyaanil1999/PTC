@@ -12,7 +12,7 @@
     {   
         $message="YES";
         // echo json_encode($sql);
-        echo json_encode(array(message=>$message,desc=>$row['vacancy_desc'],cgpa=>$row['vacancy_cgpa'],skill=>$row['vacancy_skills_req'],loc=>$row['vacancy_location']));
+        echo json_encode(array(message=>$message,desc=>$row['vacancy_desc'],cgpa=>$row['vacancy_cgpa'],skill=>$row['vacancy_skills_req'],loc=>$row['vacancy_location'],date=>$row['vacancy_date']));
     }
     else
     {

@@ -154,6 +154,13 @@ html,body{
     transition: display 1s;
     overflow: hidden;
 }
+
+.green{
+  background: green;
+}
+.red{
+  background: red;
+}
 .navarbar__hamburger-items__text-wrapper{
     white-space: nowrap;
     overflow: hidden;
@@ -202,6 +209,9 @@ html,body{
   -moz-transition: .25s ease-in-out;
   -o-transition: .25s ease-in-out;
   transition: .25s ease-in-out;
+}
+.navarbar__hamburger-items__icon i{
+  font-size: 2rem;
 }
 #nav-icon3 span:nth-child(1) {
     top: 0px;
@@ -277,7 +287,7 @@ html,body{
 
   .content-listing-page{
     width: 50%;
-    height: 60%;
+    height: 80%;
     /* background: red; */
   }
 
@@ -293,7 +303,7 @@ html,body{
   }
   .form-items-wrap{
       width: 70%;
-      height: 90%;
+      height: 100%;
       display: flex;
       /* background: red; */
       flex-direction: column;
@@ -302,11 +312,32 @@ html,body{
 
   .form-items-wrap h1{
       flex-shrink: 1;
+      font-size: 1.5srem;
   }
   .form-items-wrap textarea,input{
     flex-grow: 2;
 }
+#submit-btn-send-offer{
+  padding: 10px;
+  border:none;
+  background: green;
+}
+#submit-btn-send-offer-2{
+  display: none;
+}
+#offer-amt{
+  display: none;
+}
+.send-btn{
+  padding: 10px;
+  border: none;
+  background: green;
+}
 
+.send-form{
+  display: flex;
+  flex-direction: column;
+}
 .form-submit-button{
     border:none;
     padding: 5px;
@@ -332,12 +363,13 @@ html,body{
 }
 
 .content-approve-page{
-    display: flex;
-    overflow-y: scroll;
-    width: 90%;
-    height: 90%;
-    border-radius: 5px;
-    box-shadow:0 0 2px 2px #303030 
+  /* display: flex; */
+  overflow-y: scroll;
+  width: 90%;
+  height: 90%;
+  border-radius: 5px;
+  box-shadow:0 0 2px 2px #303030; 
+  float:left;
 }
 
 
@@ -382,6 +414,82 @@ html,body{
     transition: background 0.2s ease-in;
 }
 
+.header {
+  display: flex;           
+  flex-direction: row;            
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  /* margin-top: 10px;          */
+  width: 100%;
+  height: 50px;
+}
+.table-row {
+  display: flex;           
+  flex-direction: row;            
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100px;
+  justify-content: space-evenly;
+}
+
+.header-text {
+  flex-grow: 1;
+  flex-basis: 0; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Jaldi', sans-serif;
+  overflow: hidden;
+  color: rgb(199, 146, 48);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 20px;
+  border: rgb(87, 87, 87) solid 2px;;
+  background: rgb(58, 58, 58);
+  transition: background 0.2s ease-in;
+}
+
+.text{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  flex-grow: 1;
+  flex-basis: 0; 
+  overflow: scroll;
+  text-align: center;
+  font-size: 1vw;
+  border: #303030 solid 1px;
+  transition: background 0.2s ease-in;
+}
+.text::-webkit-scrollbar { width: 0 !important }
+.text{ overflow: -moz-scrollbars-none; }
+.form-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.apply-btn{
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  font-family: 'Jaldi', sans-serif;
+
+
+}
+#send-msg{
+  color: red;
+  font-family: 'Jaldi', sans-serif;
+  display: none;
+}
+.schedule{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 @media only screen and (max-width: 1028px){
     .navbar-container-common{

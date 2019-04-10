@@ -4,7 +4,6 @@ let Hamburger_flag=false;
 
 window.onload=()=>{
     function click_ham_menu(){
-    console.log('click');
     $('#nav-icon3').toggleClass('open');
     if(Hamburger_flag===false){
     $('.content-container').css("width","85%");
@@ -44,9 +43,9 @@ window.onload=()=>{
         click_ham_menu();
         
     });
-    $('#train_btn').click(()=>{
+    $('#offer_btn').click(()=>{
         $('.content').css("display","none");
-        $('.training ').css("display","flex");
+        $('.offer').css("display","flex");
         click_ham_menu();
 
 
@@ -128,6 +127,34 @@ window.onload=()=>{
         return false;
     });
     $('document').ready(function(){
+        $.ajax({
+            url : 'php/check_placed.php',
+            datatype : 'json',
+            encode : true,
+            beforeSend : function(){
+                console.log('sending');
+                // $('#reg-msg').html('Sending');
+            },
+            success : function(response){
+
+                response = JSON.parse(response);
+                // if(response.message== "ok"){
+                if (response.status=="PLACED"){
+                    // console.log('ad');
+                    $('.main-container-admin, .denied').css("display","none");
+                    $('.pending, .denied').css("display","none");
+                    $('.warning-message, .placed').css("display","flex");
+
+                }
+    
+            }
+
+            // }
+
+        });
+        return false;
+    });
+    $('document').ready(function(){
         $('.apply-btn').on('click',function(e){
             console.log('submiting');
             var id_form=$(this).prev('.hidden').val();
@@ -141,20 +168,29 @@ window.onload=()=>{
                 datatype : 'json',
                 encode : true,
                 beforeSend : function(){
-                    console.log('sending');
                     $('.table-msg').html('Sending');
                     $('.table-msg').css("display","flex");
 
                 },
                 success : function(response){
                         response = JSON.parse(response);
-
                         console.log(response);
-                        if(response==="ok")
+                        if(response==="APROVED")
+                        {
+                            $('.table-msg').html('Approved Already');
+                            $('.table-msg').css("display","flex");
+                        }
+                        else if(response=="PENDING")
                         {
                             $('.table-msg').html('Already Applied');
                             $('.table-msg').css("display","flex");
                             console.log('No can do');
+                        }
+                        else if(response=="DENIED")
+                        {
+                            $('.table-msg').html('Application Denied');
+                            $('.table-msg').css("display","flex");
+                            console.log('no can do');
                         }
                     }
     
@@ -163,7 +199,102 @@ window.onload=()=>{
             });
             return false;
         });
-    });
+        $('document').ready(function(){
+            $('.green1').on('click',function(e){
+                console.log('submiting');
+                var id_form=$(this).prev('.hidden').val();
+                e.preventDefault(); 
+                var FormData = $('#accept-offer-form-'+id_form).serialize();
+                $.ajax({
+                    
+                    type : 'post',
+                    url : 'php/accept_placement.php',
+                    data : FormData,
+                    datatype : 'json',
+                    encode : true,
+                    beforeSend : function(){
+                        $('.table-msg').html('Sending');
+                        $('.table-msg').css("display","flex");
+    
+                    },
+                    success : function(response){
+                            response = JSON.parse(response);
+                            console.log(response);
+                            if(response==="APROVED")
+                            {
+                                $('.table-msg').html('Approved Already');
+                                $('.table-msg').css("display","flex");
+                            }
+                            else if(response=="PENDING")
+                            {
+                                $('.table-msg').html('Already Applied');
+                                $('.table-msg').css("display","flex");
+                                console.log('No can do');
+                            }
+                            else if(response=="DENIED")
+                            {
+                                $('.table-msg').html('Application Denied');
+                                $('.table-msg').css("display","flex");
+                                console.log('no can do');
+                            }
+                        }
+        
+                    // }
+        
+                });
+                return false;
+            });
+        });
+        $('document').ready(function(){
+            $('.red2').on('click',function(e){
+                console.log('submiting');
+                var id_form=$(this).prev('.hidden').val();
+                e.preventDefault(); 
+                var FormData = $('#deny-offer-form-'+id_form).serialize();
+                $.ajax({
+                    
+                    type : 'post',
+                    url : 'php/de.php',
+                    data : FormData,
+                    datatype : 'json',
+                    encode : true,
+                    beforeSend : function(){
+                        $('.table-msg').html('Sending');
+                        $('.table-msg').css("display","flex");
+        
+                    },
+                    success : function(response){
+                            response = JSON.parse(response);
+                            console.log(response);
+                            if(response==="APROVED")
+                            {
+                                $('.table-msg').html('Approved Already');
+                                $('.table-msg').css("display","flex");
+                            }
+                            else if(response=="PENDING")
+                            {
+                                $('.table-msg').html('Applied');
+                                $('.table-msg').css("display","flex");
+                                console.log('No can do');
+                            }
+                            else if(response=="DENIED")
+                            {
+                                $('.table-msg').html('Denied');
+                                $('.table-msg').css("display","flex");
+                                console.log('no can do');
+                            }
+                        }
+        
+                    // }
+        
+                });
+                return false;
+            });
+        });
+    
+});
+
+
 
 }
 )();
